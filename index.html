@@ -116,7 +116,31 @@
         <h1>বেফাকুল মাদারিসিল আরাবিয়া বাংলাদেশ</h1>
         <p>কওমী মাদ্রাসা শিক্ষাবোর্ড</p>
         <p>২০৫, কাজলার পাড় (ভাঙ্গাপ্রেস), যাত্রাবাড়ী, ঢাকা-১২৩৬</p>
+    </div>div class="container">
+    <div class="form-group">
+        <label>কেন্দ্রীয় পরীক্ষা নির্বাচন করুন <span>*</span></label>
+        <select>
+            <option>১৪৪৬ হিজরি / ১৪৩১ বঙ্গাব্দ / ২০২৫ ঈসাব্দ</option>
+        </select>
     </div>
+
+    <div class="form-group">
+        <label>মারহালা নির্বাচন করুন <span>*</span></label>
+        <select id="marhalaSelect">
+            <option>তাকমীল</option>
+            <option selected>সানাবিয়া উলিয়া</option>
+            <option>ফজীলত</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>রোল নম্বর (ইংরেজিতে লিখুন) <span>*</span></label>
+        <input type="text" id="rollInput" placeholder="XXXXXX">
+    </div>
+
+    <div class="form-group">
+        <label>রেজি নম্বর (ইংরেজিতে লিখুন) <span>*</span></label>
+        <input type="text" id="regInput" placeholder="XXXXXX">
 
     <div class="form-body">
         <div class="form-group">
@@ -130,11 +154,7 @@
         </div>
 
         <button class="btn" onclick="searchResult()">অনুসন্ধান করুন</button>
-    </div>
-</div>
-
-<div id="resultArea">
-    <div class="res-head">ব্যক্তিগত ফলাফল</div>
+    <div><div class="res-head">ব্যক্তিগত ফলাফল</div>
     <table class="result-table">
         <tr><td>নাম</td><td id="resName"></td></tr>
         <tr><td>পিতার নাম</td><td id="resFather"></td></tr>

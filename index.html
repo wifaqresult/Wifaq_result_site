@@ -5,212 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wifaq Result Interface</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 400px;
-            background-color: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .header {
-            background-color: #1b7339;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
-
-        .header h1 { margin: 0; font-size: 20px; font-weight: bold; }
-        .header p { margin: 5px 0; font-size: 13px; opacity: 0.9; }
-
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { width: 100%; max-width: 400px; background-color: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { background-color: #1b7339; color: white; text-align: center; padding: 25px 15px; }
+        .header h1 { margin: 0; font-size: 20px; }
         .form-body { padding: 25px; }
-
         .form-group { margin-bottom: 20px; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            box-sizing: border-box;
-            background-color: #fafafa;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 10px;
-            background-color: #1b7339;
-            color: white;
-        }
-
-        #resultArea {
-            display: none;
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            border: 1px solid #1b7339;
-            margin-bottom: 30px;
-        }
-
-        .res-head {
-            background: #1b7339;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .result-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-            vertical-align: top;
-        }
-
-        .result-table td:first-child { font-weight: bold; color: #555; width: 35%; }
-        .merit { color: #d9534f; font-weight: bold; }
-
+        label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 10px; color: white; background-color: #1b7339; }
+        
+        /* রেজাল্ট কার্ড স্টাইল */
+        #resultArea { margin-top: 20px; display: none; width: 100%; max-width: 400px; background: white; padding: 20px; border-radius: 10px; border: 2px solid #1b7339; box-sizing: border-box; }
+        .result-success { color: green; font-weight: bold; font-size: 18px; text-align: center; }
+        .result-table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+        .result-table td { padding: 8px; border-bottom: 1px solid #eee; }
     </style>
 </head>
 <body>
 
+<div class="container">
     <div class="header">
         <h1>বেফাকুল মাদারিসিল আরাবিয়া বাংলাদেশ</h1>
         <p>কওমী মাদ্রাসা শিক্ষাবোর্ড</p>
-        <p>২০৫, কাজলার পাড় (ভাঙ্গাপ্রেস), যাত্রাবাড়ী, ঢাকা-১২৩৬</p>
-    <div class="form-group">
-        <label>কেন্দ্রীয় পরীক্ষা নির্বাচন করুন <span>*</span></label>
-        <select>
-            <option>১৪৪৬ হিজরি / ১৪৩১ বঙ্গাব্দ / ২০২৫ ঈসাব্দ</option>
-        </select>
-       <option selected>১৪৪৭ হিজরি / ১৪৩২ বঙ্গাব্দ / ২০২৬ ঈসাব্দ</option>
-        </select>
-    </div>
     </div>
 
-    <div class="form-group">
-        <label>মারহালা নির্বাচন করুন <span>*</span></label>
-        <select id="marhalaSelect">
-            <option>তাকমীল</option>
-            <option selected>সানাবিয়া উলিয়া</option>
-            <option>ফজীলত</option>
-        </select>
+    <div class="form-body">
+        <div class="form-group">
+            <label>রোল নম্বর (ইংরেজিতে)</label>
+            <input type="text" id="roll" placeholder="যেমন: 123456">
+        </div>
+        <div class="form-group">
+            <label>রেজি নম্বর (ইংরেজিতে)</label>
+            <input type="text" id="reg" placeholder="যেমন: 987654">
+        </div>
+        <button class="btn" onclick="checkResult()">অনুসন্ধান করুন</button>
     </div>
+</div>
 
-    <div class="form-group">
-        <label>রোল নম্বর (ইংরেজিতে লিখুন) <span>*</span></label>
-        <input type="text" id="rollInput" placeholder="XXXXXX">
-    </div>
-
-    <div class="form-group">
-        <label>রেজি নম্বর (ইংরেজিতে লিখুন) <span>*</span></label>
-        <input type="text" id="regInput" placeholder="XXXXXX">
-
-        <button class="btn" onclick="searchResult()">অনুসন্ধান করুন</button>
-    <div><div class="res-head">পুনরায় চেষ্টা করুন</div>
+<div id="resultArea">
+    <div class="result-success">আলহামদুলিল্লাহ, আপনি উত্তীর্ণ হয়েছেন!</div>
     <table class="result-table">
-        <tr><td>নাম</td><td id="resName"></td></tr>
-        <tr><td>পিতার নাম</td><td id="resFather"></td></tr>
-        <tr><td>জন্ম তারিখ</td><td id="resDOB"></td></tr>
-        <tr><td>মাদরাসা</td><td id="resMadrasa"></td></tr>
-        <tr><td>মারকাজ</td><td id="resMarkaz"></td></tr>
-        <tr><td>মারহালা</td><td id="resMarhala"></td></tr>
-        <tr><td>গড় নম্বর</td><td id="resMark"></td></tr>
-        <tr><td>ফল</td><td id="resGrade"></td></tr>
-        <tr><td>মেধাস্থান</td><td id="resMerit" class="merit"></td></tr>
+        <tr><td><b>নাম:</b></td><td id="resName">নাজমুস সাকিব</td></tr>
+        <tr><td><b>মারহালা:</b></td><td>সানাবিয়া উলিয়া</td></tr>
+        <tr><td><b>গড় নম্বর:</b></td><td id="resMark">৮৫</td></tr>
+        <tr><td><b>ফল:</b></td><td>মুমতায (A+)</td></tr>
     </table>
 </div>
 
 <script>
-    // শিক্ষার্থীদের ডাটাবেজ
-    const studentsData = [
-        { 
-            roll: "110966", reg: "10105", 
-            name: "নাজমুস সাকিব", 
-            father: "মো.নজরুল ইসলাম", 
-            dob: "24-09-2008",
-            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", 
-            markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
-            marhala: "সানাবিয়া উলিয়া", 
-            mark: "৮৮", 
-            grade: "মুমতায", 
-            merit: "৪১" 
-        },
-        { 
-            roll: "110928", reg: "10065", 
-            name: "জান্নাতুর রাইয়ান", 
-            father: "মাওলানা মোস্তাকিম", 
-            dob: "26-12-2005",
-            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", 
-            markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
-            marhala: "সানাবিয়া উলিয়া", 
-            mark: "৮০", 
-            grade: "মুমতায", 
-            merit: "__" 
-        }
-    ];
-
-    function searchResult() {
-        const roll = document.getElementById('rollInput').value.trim();
-        const reg = document.getElementById('regInput').value.trim();
+    function checkResult() {
+        const roll = document.getElementById('roll').value;
+        const reg = document.getElementById('reg').value;
         const resultArea = document.getElementById('resultArea');
 
-        const student = studentsData.find(s => s.roll === roll && s.reg === reg);
-
-        if (student) {
-            document.getElementById('resName').innerText = student.name;
-            document.getElementById('resFather').innerText = student.father;
-            document.getElementById('resDOB').innerText = student.dob;
-            document.getElementById('resMadrasa').innerText = student.madrasa;
-            document.getElementById('resMarkaz').innerText = student.markaz;
-            document.getElementById('resMarhala').innerText = student.marhala;
-            document.getElementById('resMark').innerText = student.mark;
-            document.getElementById('resGrade').innerText = student.grade;
-            document.getElementById('resMerit').innerText = student.merit;
-            
+        // এখানে আপনি আপনার ডাটা সেট করতে পারেন
+        if (roll === "110966" && reg === "10105") {
             resultArea.style.display = "block";
-            // রেজাল্ট দেখালে অটোমেটিক স্ক্রল করে নিচে নিয়ে যাবে
-            window.scrollTo({ top: resultArea.offsetTop, behavior: 'smooth' });
+            alert("রেজাল্ট পাওয়া গেছে!");
         } else {
             resultArea.style.display = "none";
-            alert("দুঃখিত! এই রোল বা রেজি নম্বরের কোনো তথ্য পাওয়া যায়নি। ইংরেজিতে নম্বর লিখে চেষ্টা করুন।");
+            alert("দুঃখিত! রোল বা রেজি নম্বর সঠিক নয়।");
         }
     }
 </script>

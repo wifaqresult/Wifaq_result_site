@@ -1,92 +1,198 @@
 <!DOCTYPE html>
+
 <html lang="bn">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wifaq Result System</title>
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; margin: 0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .container { width: 100%; max-width: 400px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header { background: #1b7339; color: white; text-align: center; padding: 20px; }
-        .form-body { padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; color: white; background: #1b7339; font-weight: bold; }
-        
-        #resultArea { margin-top: 20px; display: none; width: 100%; max-width: 450px; background: white; padding: 20px; border-radius: 10px; border: 2px solid #1b7339; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .result-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .result-table td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; color: #333; }
-        .success-msg { color: #1b7339; text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 18px; }
-        .merit-highlight { color: #d9534f; font-weight: bold; } /* মেধাস্থান হাইলাইট করার জন্য */
-    </style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wifaq Result System</title>
+
+    <style>
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; margin: 0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+
+        .container { width: 100%; max-width: 400px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+        .header { background: #1b7339; color: white; text-align: center; padding: 20px; }
+
+        .form-body { padding: 20px; }
+
+        .form-group { margin-bottom: 15px; }
+
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; color: white; background: #1b7339; font-weight: bold; }
+
+        
+
+        #resultArea { margin-top: 20px; display: none; width: 100%; max-width: 450px; background: white; padding: 20px; border-radius: 10px; border: 2px solid #1b7339; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        .result-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+
+        .result-table td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; color: #333; }
+
+        .success-msg { color: #1b7339; text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 18px; }
+
+        .merit-highlight { color: #d9534f; font-weight: bold; } /* মেধাস্থান হাইলাইট করার জন্য */
+
+    </style>
+
 </head>
+
 <body>
 
+
 <div class="container">
-    <div class="header">
-        <h3>বেফাকুল মাদারিসিল আরাবিয়া বাংলাদেশ</h3>
-        <p>ফলাফল অনুসন্ধান</p>
-    </div>
-    <div class="form-body">
-        <div class="form-group">
-            <label>রোল নম্বর</label>
-            <input type="text" id="rollInput" placeholder="রোল লিখুন">
-        </div>
-        <div class="form-group">
-            <label>রেজি নম্বর</label>
-            <input type="text" id="regInput" placeholder="রেজি লিখুন">
-        </div>
-        <button class="btn" onclick="searchResult()">অনুসন্ধান করুন</button>
-    </div>
+
+    <div class="header">
+
+        <h3>বেফাকুল মাদারিসিল আরাবিয়া বাংলাদেশ</h3>
+
+        <p>ফলাফল অনুসন্ধান</p>
+
+    </div>
+
+    <div class="form-body">
+
+        <div class="form-group">
+
+            <label>রোল নম্বর</label>
+
+            <input type="text" id="rollInput" placeholder="রোল লিখুন">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>রেজি নম্বর</label>
+
+            <input type="text" id="regInput" placeholder="রেজি লিখুন">
+
+        </div>
+
+        <button class="btn" onclick="searchResult()">অনুসন্ধান করুন</button>
+
+    </div>
+
 </div>
+
 
 <div id="resultArea">
-    <div class="success-msg">ফলাফল পাওয়া গেছে!</div>
-    <table class="result-table">
-        <tr><td><b>নাম:</b></td><td id="resName"></td></tr>
-        <tr><td><b>পিতার নাম:</b></td><td id="resFather"></td></tr>
-        <tr><td><b>জন্ম তারিখ:</b></td><td id="resDOB"></td></tr>
-        <tr><td><b>মাদরাসা:</b></td><td id="resMadrasa"></td></tr>
-        <tr><td><b>মারকাজ:</b></td><td id="resMarkaz"></td></tr>
-        <tr><td><b>মারহালা:</b></td><td id="resMarhala"></td></tr>
-        <tr><td><b>গড় নম্বর:</b></td><td id="resMark"></td></tr>
-        <tr><td><b>ফল:</b></td><td id="resGrade"></td></tr>
-        <tr><td><b>মেধাস্থান:</b></td><td id="resMerit" class="merit-highlight"></td></tr>
-    </table>
+
+    <div class="success-msg">ফলাফল পাওয়া গেছে!</div>
+
+    <table class="result-table">
+
+        <tr><td><b>নাম:</b></td><td id="resName"></td></tr>
+
+        <tr><td><b>পিতার নাম:</b></td><td id="resFather"></td></tr>
+
+        <tr><td><b>জন্ম তারিখ:</b></td><td id="resDOB"></td></tr>
+
+        <tr><td><b>মাদরাসা:</b></td><td id="resMadrasa"></td></tr>
+
+        <tr><td><b>মারকাজ:</b></td><td id="resMarkaz"></td></tr>
+
+        <tr><td><b>মারহালা:</b></td><td id="resMarhala"></td></tr>
+
+        <tr><td><b>গড় নম্বর:</b></td><td id="resMark"></td></tr>
+
+        <tr><td><b>ফল:</b></td><td id="resGrade"></td></tr>
+
+        <tr><td><b>মেধাস্থান:</b></td><td id="resMerit" class="merit-highlight"></td></tr>
+
+    </table>
+
 </div>
 
+
 <script>
-    // তথ্য সেট: এখানে আপনার ১০ জন শিক্ষার্থীর তথ্য বসান
-    const studentsData = [
-        { 
-            roll: "110928", reg: "10065", 
-            name: "জান্নাতুর রাইয়ান", father: "মাওলানা মোস্তাকিম", dob: "26-12-2005",
-            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
-            marhala: "সানাবিয়া উলিয়া", mark: "৮৯", grade: "মুমতায", merit: "৪০" 
-        },
-        { 
-            roll: "110966", reg: "10105", 
-            name: "নাজমুস সাকিব", father: "নজরুল ইসলাম", dob: "24-09-2008",
-            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
-            marhala: "সানাবিয়া উলিয়া", mark: "৮৮", grade: "মুমতায", merit: "৪৩" 
-        }
-        // আরও ৮ জন শিক্ষার্থীর ডাটা একইভাবে নিচের কমা দিয়ে যুক্ত করতে পারেন
-    ];
 
-    function searchResult() {
-        const roll = document.getElementById('rollInput').value;
-        const reg = document.getElementById('regInput').value;
-        const resultArea = document.getElementById('resultArea');
+    // তথ্য সেট: এখানে আপনার ১০ জন শিক্ষার্থীর তথ্য বসান
 
-        const student = studentsData.find(s => s.roll === roll && s.reg === reg);
+    const studentsData = [
 
-        if (student) {
-            document.getElementById('resName').innerText = student.name;
-            document.getElementById('resFather').innerText = student.father;
-            document.getElementById('resDOB').innerText = student.dob;
-            document.getElementById('resMadrasa').innerText = student.madrasa;
-            document.getElementById('resMarkaz').innerText = student.markaz;
-            document.getElementById('resMarhala').innerText = student.marhala;
-            document.getElementById('resMark').innerText = student.mark;
-            document.getElementById('resGrade').innerText = student.gr
+        { 
+
+            roll: "110928", reg: "10065", 
+
+            name: "জান্নাতুর রাইয়ান", father: "মাওলানা মোস্তাকিম", dob: "26-12-2005",
+
+            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
+
+            marhala: "সানাবিয়া উলিয়া", mark: "৮৯", grade: "মুমতায", merit: "৪০" 
+
+        },
+
+        { 
+
+            roll: "110966", reg: "10105", 
+
+            name: "নাজমুস সাকিব", father: "নজরুল ইসলাম", dob: "24-09-2008",
+
+            madrasa: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)", markaz: "জামিয়া ইসলামিয়া দারুল উলুম মাদানিয়া,৩১২ দক্ষিণ যাত্রাবাড়ী,যাত্রাবাড়ী, ঢাকা (মহানগর)",
+
+            marhala: "সানাবিয়া উলিয়া", mark: "৮৮", grade: "মুমতায", merit: "৪৩" 
+
+        }
+
+        // আরও ৮ জন শিক্ষার্থীর ডাটা একইভাবে নিচের কমা দিয়ে যুক্ত করতে পারেন
+
+    ];
+
+
+    function searchResult() {
+
+        const roll = document.getElementById('rollInput').value;
+
+        const reg = document.getElementById('regInput').value;
+
+        const resultArea = document.getElementById('resultArea');
+
+
+        const student = studentsData.find(s => s.roll === roll && s.reg === reg);
+
+
+        if (student) {
+
+            document.getElementById('resName').innerText = student.name;
+
+            document.getElementById('resFather').innerText = student.father;
+
+            document.getElementById('resDOB').innerText = student.dob;
+
+            document.getElementById('resMadrasa').innerText = student.madrasa;
+
+            document.getElementById('resMarkaz').innerText = student.markaz;
+
+            document.getElementById('resMarhala').innerText = student.marhala;
+
+            document.getElementById('resMark').innerText = student.mark;
+
+            document.getElementById('resGrade').innerText = student.grade;
+
+            document.getElementById('resMerit').innerText = student.merit;
+
+            resultArea.style.display = "block";
+
+        } else {
+
+            resultArea.style.display = "none";
+
+            alert("দুঃখিত! এই তথ্য দিয়ে কোনো ফলাফল পাওয়া যায়নি।");
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
